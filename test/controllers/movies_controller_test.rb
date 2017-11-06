@@ -42,7 +42,31 @@ describe MoviesController do
         movie.keys.sort.must_equal keys
       end
     end
-
   end
 
+  describe "show" do
+    it "can get a movie with working path" do
+      get movie_path(movies(:two).id)
+      must_respond_with :success
+    end
+
+    it "returns an error for an invalid id" do
+      get movie_path("yolo")
+      must_respond_with :not_found
+    end
+
+    it "returns json" do
+      get movie_path(movies(:two).id)
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it "returns a single movie with exactly the required fields" do
+      keys = %w(id release_date title)
+      get movie_path(movies(:two).id)
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+      body.must_be_instance_of Hash
+      body.count.must_equal 3
+    end
+  end
 end
