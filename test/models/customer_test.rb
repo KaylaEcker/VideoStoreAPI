@@ -15,3 +15,7 @@ describe Customer do
     customer.valid?.must_equal false
   end
 end
+
+
+
+#check we are returning same data type like array
