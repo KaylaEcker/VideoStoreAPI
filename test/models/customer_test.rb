@@ -11,5 +11,7 @@ describe Customer do
 
   it "must have an account_credit" do
     customer.account_credit.must_equal 0
+    customer.account_credit = nil
+    customer.valid?.must_equal false
   end
 end
