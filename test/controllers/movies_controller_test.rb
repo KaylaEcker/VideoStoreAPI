@@ -69,4 +69,42 @@ describe MoviesController do
       body.count.must_equal 3
     end
   end
+
+  describe "create" do
+    let(:movie_data) {
+      {
+        title: "Guille goes to Ada",
+        id: 1,
+        release_date: "2017-08-01"
+      }
+    }
+    let(:bad_movie_data) {
+      {
+        release_date: "2017-08-01",
+        id: 2
+      }
+    }
+
+    it "Creates a new movie when given valid data" do
+      proc{
+        post movies_path, params:{movie: movie_data}
+      }.must_change 'Movie.count', 1
+    end
+
+    it "Does not create movie with invalid data" do
+      proc{
+        post movies_path, params:{movie: bad_movie_data}
+      }.must_change 'Movie.count', 0
+    end
+
+    it "must respond with error if given invalid data" do
+        post movies_path, params:{movie: bad_movie_data}
+        must_respond_with :bad_request
+    end
+
+    it "must respond with success for valid data" do
+      post movies_path, params:{movie: movie_data}
+      must_respond_with :success
+    end
+  end
 end
