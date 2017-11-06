@@ -61,12 +61,12 @@ describe MoviesController do
     end
 
     it "returns a single movie with exactly the required fields" do
-      keys = %w(id release_date title)
+      keys = %w(available_inventory id inventory overview release_date title)
       get movie_path(movies(:two).id)
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys
       body.must_be_instance_of Hash
-      body.count.must_equal 3
+      body.count.must_equal 6
     end
   end
 
