@@ -11,3 +11,8 @@ two:
   overview: MyString
   release_date: MyString
   inventory: 1
+
+no_inventory:
+  title: Amelie
+  overview: Stef loves it
+  release_date: 2001-04-25
