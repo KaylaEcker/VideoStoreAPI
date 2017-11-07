@@ -9,4 +9,5 @@ describe Movie do
     movie.valid?.must_equal true
   end
 
+
 end
