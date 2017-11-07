@@ -39,6 +39,7 @@ group :development do
   gem 'guard-minitest', '~> 2.3.2' # https://github.com/guard/guard-minitest
   # Colorize minitest output and show failing tests instantly.
   gem 'minitest-colorize', git: 'https://github.com/ysbaddaden/minitest-colorize'
+  gem 'pry'
 
 end
 
