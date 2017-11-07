@@ -13,6 +13,7 @@ describe MoviesController do
     end
 
     it "returns an empty array if no movies" do
+      Rental.destroy_all
       Movie.destroy_all
       get movies_path
       must_respond_with :success

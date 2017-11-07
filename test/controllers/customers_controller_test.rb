@@ -13,6 +13,7 @@ describe CustomersController do
     end
 
     it "returns an empty array if no customers" do
+      Rental.destroy_all
       Customer.destroy_all
       get customers_path
       must_respond_with :success
