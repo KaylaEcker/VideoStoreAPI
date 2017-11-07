@@ -3,6 +3,7 @@ one:
   customer: one
   movie: one
   due_date: MyString
+  check_out_date: "2017-01-01"
 
 two:
   customer: two

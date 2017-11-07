@@ -18,6 +18,19 @@ class RentalsController < ApplicationController
     bad_request
   end
 
+  def check_in
+    rental = (Rental.where(customer_id: params[:customer_id], movie_id: params[:customer_id])).first
+    if rental
+      rental.check_in = true
+      if rental.save
+        render json:rental.as_json(only:[:movie_id, :due_date, :check_out_date, :customer_id, :id, :check_in]),
+        status: :ok
+        return
+      end
+    end
+    bad_request
+  end
+
   private
 
   def rental_params

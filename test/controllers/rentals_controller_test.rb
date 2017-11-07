@@ -79,4 +79,68 @@ describe RentalsController do
     end
   end
 
+  describe "checkin" do
+    let(:check_in_data) {
+      {
+        customer_id: customers(:one).id,
+        movie_id: movies(:one).id,
+      }
+    }
+
+    let(:bad_check_in_data) {
+      {
+        customer_id: 100,
+        movie_id: 100,
+      }
+    }
+
+    it "it a real working route" do
+      post rentals_check_in_path, params: {key: "value"}
+      must_respond_with :bad_request
+    end
+
+    it "returns json" do
+      post rentals_check_in_path, params: rental_data
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it "responds with success for a valid data" do
+      post rentals_check_in_path, params: check_in_data
+      must_respond_with :success
+    end
+
+    it "returns a bad request for invalid data" do
+      post rentals_check_in_path, params: bad_check_in_data
+      must_respond_with :bad_request
+    end
+
+    it "modifies a rental when given valid data" do
+      post rentals_check_in_path, params: check_in_data
+      must_respond_with :success
+      rental = rentals(:one)
+      rental.check_in.must_equal true
+    end
+
+    it "returns a hash" do
+      post rentals_check_in_path, params: check_in_data
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+    end
+
+    it "returns bad request if rental doesn't exist" do
+      post rentals_check_in_path, params: {customer_id: 100, movie_id: 100}
+      must_respond_with :bad_request
+    end
+
+    it "returns a rental with exactly the required fields" do
+      keys = %w(check_in check_out_date customer_id due_date id movie_id)
+      post rentals_check_in_path, params: check_in_data
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+      body.must_be_instance_of Hash
+      body.count.must_equal 6
+    end
+
+  end
+
 end
