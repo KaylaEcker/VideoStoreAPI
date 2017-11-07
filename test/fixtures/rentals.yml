@@ -1,0 +1,20 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  customer: one
+  movie: one
+  due_date: MyString
+
+two:
+  customer: two
+  movie: two
+  due_date: MyString
+
+no_due_date:
+    customer: two
+    movie: two
+    check_out_date: "2017-01-01"
+
+no_check_out_date:
+    customer: two
+    movie: two
+    due_date: "2017-12-25"
