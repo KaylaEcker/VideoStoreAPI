@@ -16,6 +16,14 @@ describe RentalsController do
       due_date: "lol"
     }
   }
+
+  let(:no_inventory_rental) {
+    {
+      customer_id: customers(:one).id,
+      movie_id: movies(:no_inventory).id,
+      due_date: "2018-12-25"
+    }
+  }
   describe "checkout" do
     it "is a real working route" do
       post rentals_check_out_path, params: {key: "value"}
@@ -57,7 +65,8 @@ describe RentalsController do
     end
 
     it "returns bad_request if movie doesn't have inventory" do
-      
+      post rentals_check_out_path, params: no_inventory_rental
+      must_respond_with :bad_request
     end
 
     it "returns a rental with exactly the correct required fields" do
