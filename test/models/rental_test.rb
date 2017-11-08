@@ -19,4 +19,9 @@ describe Rental do
     rental = rentals(:no_check_out_date)
     rental.valid?.must_equal false
   end
+
+  it "is invalid if movie has no available inventory" do
+    rental = rentals(:no_inventory_rental)
+    rental.valid?.must_equal false
+  end
 end
