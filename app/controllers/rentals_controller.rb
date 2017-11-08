@@ -4,7 +4,7 @@ class RentalsController < ApplicationController
   def check_out
     movie = Movie.find_by(id: params[:movie_id])
     customer = Movie.find_by(id: params[:customer_id])
-    if movie && movie.available? && customer
+    if movie && customer
       rental = Rental.new(rental_params)
       today = Date.today
       today = today.strftime("%F")
