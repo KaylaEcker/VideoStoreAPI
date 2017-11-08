@@ -17,3 +17,12 @@ two:
   state: MyString
   postal_code: MyString
   phone: MyString
+
+no_inventory_customer:
+  name: no inventory customer
+  registered_at: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  phone: MyString

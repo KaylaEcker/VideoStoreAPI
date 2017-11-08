@@ -14,7 +14,7 @@ two:
   inventory: 1
   available_inventory: 1
 
-no_inventory:
+no_inventory_movie:
   title: Amelie
   overview: Stef loves it
   release_date: 2001-04-25
