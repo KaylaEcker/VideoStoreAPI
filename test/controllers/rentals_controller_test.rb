@@ -20,7 +20,7 @@ describe RentalsController do
   let(:no_inventory_rental) {
     {
       customer_id: customers(:one).id,
-      movie_id: movies(:no_inventory).id,
+      movie_id: movies(:no_inventory_movie).id,
       due_date: "2018-12-25"
     }
   }
